@@ -1673,7 +1673,7 @@ function apply_statistic(stat::ViolinStatistic,
     else
         grouped_y = DefaultDict(eltype(aes.x), Vector{Float64}, () -> Float64[])
         for (x, y) in zip(cycle(aes.x), aes.y)
-            push!(grouped_y[x], y)
+            push!(grouped_y[x], y[1]=>y[2])
         end
 
         aes.x     = Array(Float64, 0)

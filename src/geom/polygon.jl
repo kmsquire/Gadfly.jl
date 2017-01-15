@@ -51,8 +51,8 @@ function render(geom::PolygonGeometry, theme::Gadfly.Theme,
         xs = DefaultDict(Any, Vector{XT}, () -> XT[])
         ys = DefaultDict(Any, Vector{YT}, () -> YT[])
         for (x, y, c, g) in zip(aes.x, aes.y, cycle(aes.color), cycle(aes.group))
-            push!(xs[(c,g)], x)
-            push!(ys[(c,g)], y)
+            push!(xs[(c,g)], x[1]=>x[2])
+            push!(ys[(c,g)], y[1]=>y[2])
         end
 
         compose!(ctx,
@@ -80,8 +80,8 @@ function render(geom::PolygonGeometry, theme::Gadfly.Theme,
         xs = DefaultDict(Color, Vector{XT}, () -> XT[])
         ys = DefaultDict(Color, Vector{YT}, () -> YT[])
         for (x, y, c) in zip(aes.x, aes.y, cycle(aes.color))
-            push!(xs[c], x)
-            push!(ys[c], y)
+            push!(xs[c], x[1]=>x[2])
+            push!(ys[c], y[1]=>y[2])
         end
 
         compose!(ctx,
